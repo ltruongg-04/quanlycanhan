@@ -29,7 +29,11 @@
                     <h3>Mục tiêu của năm</h3>
                     <ul id="yearlyGoals">
                         @foreach ($yearlyGoals as $goal)
-                            <li>{{ $goal->task_name }}</li>
+                            <li>
+                                {{ $goal->task_name }}
+                                <a href="{{ route('cong-viec.edit', $goal->id) }}" class="edit-btn">
+                                    <i class="fa-solid fa-pen"></i></a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -37,7 +41,12 @@
                     <h3>Mục tiêu của tháng</h3>
                     <ul id="monthlyGoals">
                         @foreach ($monthlyGoals as $goal)
-                            <li>{{ $goal->task_name }}</li>
+                            <li>
+                                {{ $goal->task_name }}
+                                <a href="{{ route('cong-viec.edit', $goal->id) }}" class="edit-btn">
+                                    <i class="fa-solid fa-pen"></i> 
+                                </a>
+                            </li>
                         @endforeach
                     </ul>
                 </div>
@@ -52,12 +61,15 @@
                         <ul>
                             @foreach ($tasks as $task)
                                 <li>
-                                    {{ $task->task_name }} 
+                                    {{ $task->task_name }}
+                                    <a href="{{ route('cong-viec.edit', $task->id) }}" class="edit-btn">
+                                        <i class="fa-solid fa-pen"></i> 
+                                    </a>
                                 </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endforeach
+                            @endforeach
+                        </ul>
+                    </div>
+                @endforeach
                 </nav>
                 
             </div>
@@ -67,7 +79,7 @@
                 <a href="{{ route('cong-viec.create') }}" >
                     <i class="fa-solid fa-plus"></i> Thêm mới
                 </a>
-            </button>
+                </button>
             </div>
         </div>
     </div>

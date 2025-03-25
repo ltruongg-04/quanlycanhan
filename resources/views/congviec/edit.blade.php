@@ -2,7 +2,7 @@
 
 @section('title', 'Chỉnh Sửa Công Việc')
 @section('head')
-    <link rel="stylesheet" href="{{ asset('frontend/css/congviec.css') }}">
+    <link rel="stylesheet" href="{{ asset('frontend/css/chinhsuacongviec.css') }}">
 @endsection
 
 @section('content')
