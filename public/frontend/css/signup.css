@@ -1,0 +1,117 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.dangky {
+    display: flex;
+
+}
+.left {
+    width: 50%;
+}
+.left .img1 {
+    position: relative;
+    margin: 50px;
+}
+.left .img2 {
+    position: relative;
+    margin: 50px 50px 0 100px;
+}
+.left .img3 {
+    position: relative;
+    margin: 100px 50px 0 50px;
+}
+.left .img4 {
+    position: relative;
+    margin: 100px 50px 0 50px;
+}
+.right {
+    width: 50%;
+    height: 700px;
+    background-color: rgba(106,106,106,0.5);
+    justify-items: center;
+}
+.block {
+    width: 520px;
+    height: 575px;
+    background-color: #fff;
+    border-radius: 20px;
+    margin-top: 70px;
+
+}
+
+.block1 {
+    display: flex;
+    border-radius: 20px 20px 0 0;
+}
+.text1 {
+    background-color: #fff;
+    width: 50%;
+    height: 100px;
+    border-radius: 20px 0 0 0;
+    align-items: center;
+}
+.text1 p {
+    font-size: 24px;
+    height: 100px;
+    font-weight: bold;
+    text-align: center;
+    align-content: center;
+    background-color: #d9d9d9;
+    border-radius: 20px 0px 60px 0;
+}
+.text2 {
+    width: 50%;
+    height: 100px;
+    border-radius: 0px 20px 0px 0px;
+    background-color: #d9d9d9;
+    align-items: center;
+}
+.text2 p {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    align-content: center;
+    height: 100px;
+    background-color: #fff;
+    border-radius: 60px 20px 0 0px;
+}
+
+.text1 a {
+    text-decoration: none;
+    color: black;
+}
+.block2 {
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
+}
+.block2 img {
+    margin-right: 50px;
+    height: 50px;
+    margin-top: 40px;
+}
+nav p {
+    font-size: 24px;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+nav input {
+    width: 300px;
+    height: 50px;
+    border-radius: 50px;
+    background-color: #d9d9d9;
+    border: none;
+}
+.btn {
+    width: 160px;
+    height: 64px;
+    border: none;
+    border-radius: 50px;
+    background-color: #d9d9d9;
+    position: absolute;
+    margin: 35px 0 0 300px;
+    font-size: 24px;
+    font-weight: bold;
+}

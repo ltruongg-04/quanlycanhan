@@ -1,0 +1,292 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #FFC107;
+    --text-color: #333;
+    --light-gray: #f5f5f5;
+    --border-color: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;    
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+body {
+    display: flex;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    margin-left: 110px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.habit-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    gap: 30px;
+}
+.content-container {
+    display: flex;
+    align-items: flex-start; 
+    justify-content: space-between; 
+    gap: 20px;
+}
+
+.habit-tracker {
+    text-align: center;
+    padding: 15px;
+}
+.habit-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 40px); 
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+
+.habit-column {
+    width: 48%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.habit-checkbox-container {
+    position: relative;
+    width: 30px;
+    height: 30px;
+}
+
+.habit-checkbox {
+    width: 100%;
+    height: 100%;
+    appearance: none;
+    background: #ddd;
+    border-radius: 5px;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.habit-checkbox:checked {
+    background: #4CAF50;
+}
+
+
+.habit-day {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 14px;
+    font-weight: bold;
+    color: black;
+    pointer-events: none; 
+}
+
+.left-content {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    margin-left: 130px;
+}
+.content {
+    display: flex;
+}
+.right-content {
+    width: 15%;
+    margin-left: 40px;
+    margin-top: 40px;
+}
+.new,
+.edit {
+    width: 140px;
+    height: 40px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.edit {
+    margin-top: 40px;
+}
+.new i,
+.edit i {
+    padding-right: 20px;
+}
+
+#habitChart {
+    max-height: 200px !important; 
+    width: 100%;
+}
+
+.hidden {
+    display: none;
+}
+
+.logout {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.logout:hover {
+    background-color: #cc0000;
+}
+
+.user-profile:hover {
+    cursor: pointer;
+}
+
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+#notification-panel {
+    position: fixed;
+    left: 0; 
+    top: 360px;
+    width: 250px;
+    background: #ffffff; 
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+}
+
+#notification-panel small {
+    color: red;
+}
+
+
+.calendar {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.year-selector {
+    font-size: 45px;
+    font-weight:900;
+    padding: 0px 30px;
+    background: lightgray;
+    display: inline-block;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family:cursive;
+    margin-bottom: 10px;
+}
+.months {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.month {
+    padding: 5px;
+    background: lightgray;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.selected {
+    background: #555;
+    color: white;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 50%;
+    text-align: center;
+}
+.modal-content ul {
+    list-style: none;
+}
+.modal-content button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    cursor: pointer;
+    background: red;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+
+
+.habit-chart {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    width: 100%;
+    height: 300px;
+    background: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.habit-bar {
+    width: 15%;
+    background-color: #4CAF50;
+    text-align: center;
+    position: relative;
+    transition: height 0.5s ease;
+}
+
+.habit-bar::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 14px;
+    color: #333;
+}

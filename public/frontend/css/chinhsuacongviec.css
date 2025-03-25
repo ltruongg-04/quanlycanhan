@@ -1,0 +1,194 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #FFC107;
+    --text-color: #333;
+    --light-gray: #f5f5f5;
+    --border-color: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    margin-left: 270px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+
+.calendar {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.year-selector {
+    font-size: 45px;
+    font-weight:900;
+    padding: 0px 30px;
+    background: lightgray;
+    display: inline-block;
+    border-radius: 8px;
+    cursor: pointer;
+    font-family:cursive;
+    margin-bottom: 10px;
+}
+.months {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 10px;
+}
+.month {
+    padding: 5px;
+    background: lightgray;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.selected {
+    background: #555;
+    color: white;
+}
+.goal nav {
+    display: flex;
+    margin-bottom: 30px;
+}
+.goal-year,
+.goal-month {
+    width: 300px;
+    background: #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    justify-items: center;
+
+}
+.goal-year h3,
+.goal-month h3 {
+    color: #555;
+    background-color: #fff;
+    width: fit-content;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+.goal-year li,
+.goal-month li {
+    margin-bottom: 5px;
+}
+.goal-month {
+    margin-left: 30px;
+}
+
+.goal-week {
+    width: 240px;
+    background: #ddd;
+    padding: 15px;
+    border-radius: 10px;
+    justify-items: center;
+}
+
+.goal-week h3 {
+    color: #555;
+    background-color: #fff;
+    width: fit-content;
+    padding: 5px;
+    margin-bottom: 10px;
+    border-radius: 15px;
+}
+.week2 {
+    margin-left: 30px;
+}
+.content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn {
+    width: 180px;
+}
+.back,
+.save {
+    width: 140px;
+    height: 40px;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+}
+
+.save {
+    margin-top: 40px;
+}
+.back i,
+.save i {
+    padding-right: 40px;
+}
+
+.hidden {
+    display: none;
+}
+
+.logout {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.logout:hover {
+    background-color: #cc0000;
+}
+
+.notification-item {
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+#notification-panel {
+    position: fixed;
+    left: 0; 
+    top: 360px;
+    width: 250px;
+    background: #ffffff; 
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+}
+
+#notification-panel small {
+    color: red;
+}
+
+
