@@ -22,6 +22,15 @@ class LoginController extends Controller
         ]);
 
         if (Auth::attempt(['name' => $request->name, 'password' => $request->password])) {
+            $user = Auth::user();
+
+            if ($user->utype == 'ADM') {
+                return redirect()->route('admin.home')->with('success', 'Đăng nhập thành công (Admin)!');
+                
+            } else if ($user->utype == 'USR') {
+                return redirect()->route('home')->with('success', 'Đăng nhập thành công (User)!');
+            }
+    
             return redirect()->route('home')->with('success', 'Đăng nhập thành công!');
         }
 

@@ -1,0 +1,161 @@
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #FFC107;
+    --text-color: #333;
+    --light-gray: #f5f5f5;
+    --border-color: #e0e0e0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    color: var(--text-color);
+}
+
+.main-content {
+    flex: 1;
+    padding: 30px;
+    margin-left: 270px;
+    justify-items: center;
+}
+
+.hidden {
+    display: none;
+}
+.habit-table {
+    display: flex;
+}
+
+.list {
+    width: calc(100%/3);
+    margin: 5px 0 15px 25px;
+    padding-top: 20px;
+    border-right:1px solid #ccc;
+    
+}
+.list li {
+    padding: 10px;
+}
+
+.checkbox-1 {
+    width:calc(100%/3);
+    margin: 5px 0 15px 15px;
+    border-right:1px solid #ccc;
+    text-align: center;
+}
+.checkbox-1 ul {
+    list-style: none;
+}
+.check li {
+    padding: 10px 0;
+}
+ input {
+    appearance: none;
+    width: 13px;
+    height: 13px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    margin: 0 5px 0 0;
+    background-color: #ccc;
+}
+ input:checked {
+    background-color: var(--primary-color); 
+    border-color: var(--primary-color);
+    position: relative;
+}
+
+.logout {
+    width: 100%;
+    padding: 10px;
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.logout:hover {
+    background-color: #cc0000;
+}
+
+.info {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    text-align: center;
+    font-size: 16px;
+    margin-top: 10px;
+    background-color: #d9d9d9;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+.bar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+.alphabet-filter {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-radius: 5px;
+}
+.alphabet-filter span {
+    cursor: pointer;
+    padding: 2px;
+}
+.alphabet-filter span:hover {
+    background-color: #ddd;
+    border-radius: 3px;
+}
+.user-list {
+    width: 700px;
+}
+.header {
+    background: #ccc;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    width: fit-content;
+}
+.user {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ddd;
+    padding: 10px;
+    margin: 5px 0;
+    border-radius: 5px;
+}
+.user button {
+    padding: 5px 10px;
+    border: none;
+    background: #888;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+.user button:hover {
+    background: #666;
+}

@@ -247,7 +247,6 @@ button:hover {
     background-color: #218838;
 }
 
-/* Responsive */
 @media (max-width: 768px) {
     .main-content {
         width: 90%;

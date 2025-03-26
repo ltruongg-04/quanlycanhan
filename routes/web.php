@@ -12,6 +12,7 @@ use App\Http\Controllers\HabitTrackingController;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\SupportController;
 use App\Http\Controllers\UserProfileController;
+use Illuminate\Http\Request;
 
 
 Auth::routes();
@@ -69,3 +70,70 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile/edit', [UserProfileController::class, 'edit'])->name('profile.edit');
     Route::post('/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
 });
+
+
+Route::get('/admin', function () {
+    return view('admin.home');
+})->name('admin.home');
+
+Route::get('/user', function () {
+    return view('home');
+})->name('user.home');
+
+Route::get('/admin/users', function () {
+    $users = [
+        ['id' => 1, 'name' => 'Nguyễn Văn Anh'],
+        ['id' => 2, 'name' => 'Nguyễn Thị Minh Anh'],
+        ['id' => 3, 'name' => 'Nguyễn Thị Ngọc Anh'],
+        ['id' => 4, 'name' => 'Nguyễn Trâm Anh'],
+        ['id' => 5, 'name' => 'Nguyễn Mai Anh'],
+        ['id' => 6, 'name' => 'Trần Thị Minh Anh'],
+        ['id' => 7, 'name' => 'Nguyễn Thị Minh Anh'],
+        ['id' => 8, 'name' => 'Nguyễn Thị Minh Anh'],
+        ['id' => 9, 'name' => 'Nguyễn Thị Minh Anh'],
+    ];
+    return view('admin.quanlynguoidung.index', compact('users'));
+})->name('admin.users');
+
+Route::get('/admin/users/{id}', function($id) {
+    $users = [
+        ['id' => 1, 'name' => 'Nguyễn Văn Anh', 'birthday' => '2004-10-24', 'gender' => 'Nam', 'email' => 'email1@gmail.com', 'phone' => '0123456789'],
+        ['id' => 2, 'name' => 'Nguyễn Thị Minh Anh', 'birthday' => '2000-05-12', 'gender' => 'Nữ', 'email' => 'email2@gmail.com', 'phone' => '0987654321'],
+    ];
+
+    $user = collect($users)->firstWhere('id', (int)$id);
+    if (!$user) {
+        abort(404);
+    }
+
+    return view('admin.quanlynguoidung.profile', ['user' => (object) $user]);
+})->name('admin.user_detail');
+
+Route::get('/admin/notifications', function () {
+    $sent_notifications = [
+        ['icon' => 'fa-solid fa-xmark', 'message' => 'Bạn đã bỏ lỡ thói quen đọc sách hôm qua.', 'time' => '30 phút trước', 'user' => 'Nguyễn Lê Trường'],
+        ['icon' => 'fa-solid fa-check-to-slot', 'message' => 'Hệ thống sẽ bảo trì từ 22:00 - 02:00 ngày 20/03. Vui lòng sắp xếp công việc trước thời gian này để tránh gián đoạn!', 'time' => 'Hôm qua', 'user' => 'Mọi người'],
+        ['icon' => 'fa-solid fa-chart-line', 'message' => 'Bạn đã hoàn thành hết công việc của hôm nay. Bạn làm tốt lắm!!', 'time' => 'Hôm qua', 'user' => 'Nguyễn Lê Trường'],
+        ['icon' => 'fa-solid fa-repeat', 'message' => 'Bạn đang rất chăm chỉ, hãy cố gắng nhé!!', 'time' => '2 hôm trước', 'user' => 'Mọi người'],
+        ['icon' => 'fa-solid fa-repeat', 'message' => 'Đã đến lúc kiểm tra tiến độ công việc tuần này rồi.', 'time' => '2 hôm trước', 'user' => 'Mọi người'],
+    ];
+
+    $unsent_notifications = [
+        ['icon' => 'fa-solid fa-xmark', 'message' => 'Bạn đã bỏ lỡ thói quen đọc sách hôm qua.', 'time' => '15/03/2025 08:20', 'user' => 'Nguyễn Lê Trường'],
+        ['icon' => 'fa-solid fa-check-to-slot', 'message' => 'Hệ thống sẽ bảo trì từ 22:00 - 02:00 ngày 20/03. Vui lòng sắp xếp công việc trước thời gian này để tránh gián đoạn!', 'time' => '12/03/2025 08:00', 'user' => 'Mọi người'],
+        ['icon' => 'fa-solid fa-chart-line', 'message' => 'Bạn đã hoàn thành hết công việc của hôm nay. Bạn làm tốt lắm!!', 'time' => '11/03/2025  23:30', 'user' => 'Nguyễn Lê Trường'],
+        ['icon' => 'fa-solid fa-repeat', 'message' => 'Bạn đang rất chăm chỉ, hãy cố gắng nhé!!', 'time' => '08/03/2025  23:00', 'user' => 'Mọi người'],
+        ['icon' => 'fa-solid fa-repeat', 'message' => 'Đã đến lúc kiểm tra tiến độ công việc tuần này rồi.', 'time' => '05/03/2025  08:00', 'user' => 'Mọi người'],
+    ];
+
+    return view('admin.quanlythongbao.index', compact('sent_notifications', 'unsent_notifications'));
+})->name('admin.notifications');
+
+Route::post('/admin/notifications/store', function (Request $request) {
+    dd($request->all());
+})->name('admin.notifications.store');
+
+Route::post('/logout', function () {
+    Auth::logout();
+    return redirect('/login');
+})->name('logout');
