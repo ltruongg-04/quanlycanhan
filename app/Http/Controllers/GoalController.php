@@ -116,48 +116,48 @@ class GoalController extends Controller
     return redirect()->route('muc-tieu')->with('success', 'Mục tiêu và các dữ liệu liên quan đã bị xóa!');
 }
 
-public function markHabitCompleted(Request $request, $tracking_id) {
-    $habitTracking = HabitTracking::findOrFail($tracking_id);
-    $habitTracking->is_completed = true;
-    $habitTracking->count += 1; 
-    $habitTracking->save();
-
-    $goal = Goal::whereHas('habits', function ($query) use ($habitTracking) {
-        $query->where('id', $habitTracking->habit_id);
-    })->first();
-
-    if ($goal) {
-        $goal->completed_days = HabitTracking::where('habit_id', $habitTracking->habit_id)
-            ->where('is_completed', true)
-            ->count();
-        $goal->save();
-    }
-
-    return response()->json(['success' => true, 'message' => 'Cập nhật thành công!']);
-}
-
-public function toggleHabitTracking(Request $request) {
-    $request->validate([
-        'habit_id' => 'required|exists:habits,id',
-        'tracking_date' => 'required|date',
-    ]);
-
-    $habitTracking = HabitTracking::where('habit_id', $request->habit_id)
-        ->where('tracking_date', $request->tracking_date)
-        ->first();
-
-    if ($habitTracking) {
-        $habitTracking->is_completed = !$habitTracking->is_completed;
+    public function markHabitCompleted(Request $request, $tracking_id) {
+        $habitTracking = HabitTracking::findOrFail($tracking_id);
+        $habitTracking->is_completed = true;
+        $habitTracking->count += 1; 
         $habitTracking->save();
-    } else {
-        HabitTracking::create([
-            'habit_id' => $request->habit_id,
-            'tracking_date' => $request->tracking_date,
-            'is_completed' => true,
-        ]);
+
+        $goal = Goal::whereHas('habits', function ($query) use ($habitTracking) {
+            $query->where('id', $habitTracking->habit_id);
+        })->first();
+
+        if ($goal) {
+            $goal->completed_days = HabitTracking::where('habit_id', $habitTracking->habit_id)
+                ->where('is_completed', true)
+                ->count();
+            $goal->save();
+        }
+
+        return response()->json(['success' => true, 'message' => 'Cập nhật thành công!']);
     }
 
-    return response()->json(['success' => true]);
-}
+    public function toggleHabitTracking(Request $request) {
+        $request->validate([
+            'habit_id' => 'required|exists:habits,id',
+            'tracking_date' => 'required|date',
+        ]);
+
+        $habitTracking = HabitTracking::where('habit_id', $request->habit_id)
+            ->where('tracking_date', $request->tracking_date)
+            ->first();
+
+        if ($habitTracking) {
+            $habitTracking->is_completed = !$habitTracking->is_completed;
+            $habitTracking->save();
+        } else {
+            HabitTracking::create([
+                'habit_id' => $request->habit_id,
+                'tracking_date' => $request->tracking_date,
+                'is_completed' => true,
+            ]);
+        }
+
+        return response()->json(['success' => true]);
+    }
 
 }

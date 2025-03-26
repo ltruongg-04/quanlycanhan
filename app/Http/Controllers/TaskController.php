@@ -58,37 +58,34 @@ class TaskController extends Controller
     public function full()
     {
         $userId = auth()->id(); 
-$today = Carbon::today();
-$startOfMonth = $today->copy()->startOfMonth();
-$endOfMonth = $today->copy()->endOfMonth();
+        $today = Carbon::today();
+        $startOfMonth = $today->copy()->startOfMonth();
+        $endOfMonth = $today->copy()->endOfMonth();
 
-$yearlyGoals = Task::where('user_id', $userId)
-    ->where('category', 'year')
-    ->get();
+        $yearlyGoals = Task::where('user_id', $userId)
+            ->where('category', 'year')
+            ->get();
 
-$monthlyGoals = Task::where('user_id', $userId)
-    ->where('category', 'month')
-    ->whereBetween('task_date', [$startOfMonth, $endOfMonth]) 
-    ->get();
+        $monthlyGoals = Task::where('user_id', $userId)
+            ->where('category', 'month')
+            ->whereBetween('task_date', [$startOfMonth, $endOfMonth]) 
+            ->get();
 
-$weeklyGoals = Task::where('user_id', $userId)
-    ->where('category', 'week')
-    ->whereBetween('task_date', [$startOfMonth, $endOfMonth])
-    ->orderBy('task_date', 'asc')
-    ->get()
-    ->groupBy(function ($task) {
-        $startOfWeek = Carbon::parse($task->task_date)->locale('vi')->startOfWeek(Carbon::MONDAY);
-        $endOfWeek = Carbon::parse($task->task_date)->locale('vi')->endOfWeek(Carbon::SUNDAY);
+        $weeklyGoals = Task::where('user_id', $userId)
+            ->where('category', 'week')
+            ->whereBetween('task_date', [$startOfMonth, $endOfMonth])
+            ->orderBy('task_date', 'asc')
+            ->get()
+            ->groupBy(function ($task) {
+                $startOfWeek = Carbon::parse($task->task_date)->locale('vi')->startOfWeek(Carbon::MONDAY);
+                $endOfWeek = Carbon::parse($task->task_date)->locale('vi')->endOfWeek(Carbon::SUNDAY);
 
-        if ($endOfWeek->greaterThan(Carbon::parse($task->task_date)->endOfMonth())) {
-            $endOfWeek = Carbon::parse($task->task_date)->endOfMonth();
-        }
+                if ($endOfWeek->greaterThan(Carbon::parse($task->task_date)->endOfMonth())) {
+                    $endOfWeek = Carbon::parse($task->task_date)->endOfMonth();
+                }
 
-        return "Mục tiêu của tuần (" . $startOfWeek->format('d/m') . " - " . $endOfWeek->format('d/m') . ")";
-    });
-
-
-
+                return "Mục tiêu của tuần (" . $startOfWeek->format('d/m') . " - " . $endOfWeek->format('d/m') . ")";
+            });
 
     return view('congviec.index', compact('yearlyGoals', 'monthlyGoals', 'weeklyGoals'));
 
@@ -123,7 +120,6 @@ $weeklyGoals = Task::where('user_id', $userId)
 public function weeklyTasks()
 {
     $userId = Auth::id(); 
-
     $startDate = Carbon::now()->startOfWeek(); 
     $endDate = $startDate->copy()->addDays(6); 
 

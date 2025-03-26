@@ -44,9 +44,6 @@ class HabitTrackingController extends Controller
 }
 
 
-    /**
-     * Kiểm tra trạng thái của một habit vào ngày cụ thể
-     */
     public function getTrackingStatus(Request $request)
     {
         $request->validate([
@@ -55,16 +52,13 @@ class HabitTrackingController extends Controller
         ]);
 
         $completed = HabitTracking::where('habit_id', $request->habit_id)
-        ->whereDate('tracking_date', $request->tracking_date) // Đảm bảo so sánh chỉ ngày
-        ->value('is_completed'); // Lấy giá trị is_completed
+        ->whereDate('tracking_date', $request->tracking_date) 
+        ->value('is_completed'); 
 
 
         return response()->json(['completed' => $completed]);
     }
 
-    /**
-     * Lấy dữ liệu thống kê theo goals
-     */
     public function getStats()
     {
         try {
@@ -88,9 +82,6 @@ class HabitTrackingController extends Controller
         }
     }
 
-    /**
-     * Thêm một tracking cho habit và cập nhật goal tương ứng
-     */
     public function store(Request $request)
     {
         $request->validate([
@@ -102,7 +93,6 @@ class HabitTrackingController extends Controller
             ['habit_id' => $request->habit_id, 'tracking_date' => $request->tracking_date]
         );
 
-        // Tìm Habit và Goal liên quan
         $habit = Habit::find($request->habit_id);
         $goal = $habit ? $habit->goal : null;
 
@@ -153,7 +143,7 @@ class HabitTrackingController extends Controller
         $tracking->is_completed = !$tracking->is_completed;
         $tracking->save();
 
-        \Log::info("✅ Cập nhật thành công:", ['completed' => $tracking->is_completed]);
+        \Log::info(" Cập nhật thành công:", ['completed' => $tracking->is_completed]);
     } else {
         $tracking = HabitTracking::create([
             'habit_id' => $request->habit_id,
@@ -161,7 +151,7 @@ class HabitTrackingController extends Controller
             'is_completed' => 1
         ]);
 
-        \Log::info("🆕 Tạo mới tracking:", ['completed' => $tracking->is_completed]);
+        \Log::info(" Tạo mới tracking:", ['completed' => $tracking->is_completed]);
     }
 
     return response()->json([
