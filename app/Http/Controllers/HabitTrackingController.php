@@ -128,7 +128,7 @@ class HabitTrackingController extends Controller
     }
     public function updateTrackingStatus(Request $request)
 {
-    \Log::info("🔍 Dữ liệu request nhận được:", $request->all()); 
+    \Log::info(" Dữ liệu request nhận được:", $request->all()); 
     $request->validate([
         'habit_id' => 'required|exists:habits,id',
         'tracking_date' => 'required|date',

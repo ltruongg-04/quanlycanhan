@@ -23,13 +23,13 @@
         </header>
         <section>
             <ul class="days">
-                <li>Sun</li>
-                <li>Mon</li>
-                <li>Tue</li>
-                <li>Wed</li>
-                <li>Thu</li>
-                <li>Fri</li>
-                <li>Sat</li>
+                <li>Chủ Nhật</li>
+                <li>Thứ 2</li>
+                <li>Thứ 3</li>
+                <li>Thứ 4</li>
+                <li>Thứ 5</li>
+                <li>Thứ 6</li>
+                <li>Thứ 7</li>
             </ul>
             <ul class="dates"></ul>
         </section>
